@@ -2,8 +2,34 @@ package com.arrayqueue;
 
 public class ArrayQueue {
 	public static void main(String[] args) {
-		
+		//1.这种情况下，这种实现方法，数组用一次就不能用了，需要优化，没有达到复用的效果
+		//优化的方式就是一个环形队列
+		//2.front++ 和 front+1 是不一样的，front++（front = front + 1）作用于整个array
+		//而front+1只是在数值上变化，front本身并没有任何变化
+		ArrayQue a = new ArrayQue(6);
+		a.addQueue(6);
+		a.addQueue(1);
+		a.addQueue(2);
+		a.addQueue(3);
+		a.addQueue(4);
+		a.addQueue(5);
+		a.showQueue();
+		System.out.println("Front1: "+a.headQueue());
+		System.out.println("Front2: "+a.headQueue());
+		System.out.println("Get: " + a.getQueue());
+		System.out.println("Front3: "+a.headQueue());
+		System.out.println("Front4: "+a.headQueue());
 	}
+	
+	
+	public static void info(ArrayQue a) {
+		System.out.println("isFull: " + a.isFull()); 
+		System.out.println("isEmpty: " + a.isEmpty());
+		System.out.println("Number: " + a.getQueue());
+		System.out.println("Front: " + a.headQueue());
+	
+	}
+	
 }
 
 class ArrayQue {
@@ -18,6 +44,14 @@ class ArrayQue {
 		this.arr = new int[maxSize];
 		this.front = -1;//指向队列头部的前一个位置不包含数据
 		this.rear = -1;//指向队列尾的具体的数据包含队列尾的最后一个数据
+	}
+	
+	public int getFront() {
+		return this.front; 
+	}
+	
+	public int getRear() {
+		return this.rear;
 	}
 	
 	//判断队列是否已经满
@@ -65,11 +99,14 @@ class ArrayQue {
 	}
 	
 	//显示头部数据是多少
-	public int showFront() {
+	public int headQueue() {
 		if(isEmpty()) {
+			System.out.println("Nothing here");
 			throw new RuntimeException();
 		}
+		return arr[front+1];
 	}
+	
 	
 	
 }
