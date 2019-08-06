@@ -6,8 +6,8 @@ import java.util.Date;
 
 public class SelectSortingDemo {
 	public static void main(String[] args) {
-		int[] arr = new int[800000];
-		for(int i = 0 ; i < 800000; i++) {
+		int[] arr = new int[80000];
+		for(int i = 0 ; i < 80000; i++) {
 			arr[i] = (int)(Math.random() * 8000000);
 		}
 		
