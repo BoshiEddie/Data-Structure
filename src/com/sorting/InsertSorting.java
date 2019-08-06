@@ -10,7 +10,7 @@ public class InsertSorting {
 		//扑克牌问题，解决了
 		//与前面个两种算法不同，前面两种算法是要元素的互换，这个是先更替，再把原来的替换
 
-		int size = 80000;
+		int size = 800000;
 		
 		int[] arr = new int[size];
 		for(int i = 0 ; i < size;i++) {
@@ -38,7 +38,7 @@ public class InsertSorting {
 			target = arr[i];
 			
 			while(j>0 && target < arr[j-1]) {
-				
+				//移位法
 				arr[j]=arr[j-1];
 				j--;
 				
