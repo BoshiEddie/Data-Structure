@@ -45,12 +45,12 @@ public class LinkedList {
 		
 		System.out.println("----------Get Number From Back----------");
 		s.list();
-		HeroNode b = getBack(0, s);
+		HeroNode b = getBack(1, s);
 		System.out.println(b);
 		
 		System.out.println("----------Reverse LinkedList----------");
 		s.list();
-		b = reverse(s.getHead());
+		reverse(s.getHead());
 		s.list();
 	
 		
@@ -58,28 +58,31 @@ public class LinkedList {
 	}
 	
 	//单链表的反转
-	public static HeroNode reverse(HeroNode head) {
+	public static void reverse(HeroNode head) {
+		
+		if(head.next == null || head.next.next == null) {
+			return;
+		}
+		
+		HeroNode cur = head.next;
+		
+		HeroNode next = null;
+		
 		HeroNode reversehead = new HeroNode(0,"","");
 		
-		HeroNode temp = head;
-		
-		while(true) {
+		while(cur != null) {
+			//先让next指向cur的next，保留原来列表指针的记录
+			next = cur.next;
+			//取出节点让节点接入reversehead
+			cur.next = reversehead.next;
 			
-			if(temp.next == null) {
-				break;
-			}
+			reversehead.next = cur;
 			
-			temp.next.next = reversehead.next;
-
-			reversehead.next = temp.next;
-			
-			temp = temp.next;
+			cur = next;
 			
 		}
 		
 		head.next = reversehead.next;
-		
-		return head;
 		
 	}
 	
